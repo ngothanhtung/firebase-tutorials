@@ -1,3 +1,5 @@
+// DOCS: https://firebase.google.com/docs/firestore/?authuser=0
+
 const admin = require('firebase-admin');
 
 var serviceAccount = require("./firebase-training-38da3a1f91ab.json");
