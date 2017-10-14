@@ -3,8 +3,8 @@ const functions = require('firebase-functions');
 admin.initializeApp(functions.config().firebase);
 
 var db = admin.firestore();
-
-exports.addMessage = functions.https.onRequest((req, res) => {
+// GET ALL PRODUCTS FROM FIRECLOUDSTORE
+exports.getProducts = functions.https.onRequest((req, res) => {
 	var docs = [];
 	db.collection('products').get()
     .then((snapshot) => {        
