@@ -14,7 +14,7 @@ var db = admin.firestore();
 // Add data
 /*
 var p = {
-    'name': 'iPhone 8',
+    'name': 'iPhone 8 plus',
     'price': 1000,
     'discount': 10,
     'imageUrl': "#"
@@ -27,10 +27,10 @@ var docRef = db.collection('products').add(p);
 
 // ADD / EDIT
 /*
-var docRef = db.collection('products').doc("9ndQ7Tu2FYL13E14optR")
+var docRef = db.collection('products').doc("1B2HsImylfQ0I6Ofn5ib")
 
 var p = docRef.set({
-    'name': 'iPhone XXX',
+    'name': 'iPhone XX',
     'price': 1200,
     'discount': 5,
     'imageUrl': "#"
@@ -50,21 +50,25 @@ var updateSingle = updateProductRef.update({ price: 999 });
 // ------------------------------------------------------------------------------------------------
 
 // GET ALL DATA
-/*
+var docs = [];
 db.collection('products').get()
     .then((snapshot) => {
+        //console.log(snapshot.docs);
         snapshot.forEach((doc) => {
-            console.log(doc.id, '=>', doc.data());
+            docs.push(doc.data());
+            //console.log(doc.id, '=>', doc.data());
         });
+
+        console.log(docs);
     })
     .catch((err) => {
         console.log('Error getting documents', err);
     });
-*/
 
 // ------------------------------------------------------------------------------------------------
 
 // GET A DOCUMENT
+/*
 getDocument = (db, id)  => {
     var productRef = db.collection('products').doc(id);
     var getProduct = productRef.get()
@@ -79,13 +83,13 @@ getDocument = (db, id)  => {
             console.log('Error getting document', err);
         });
 }
-
+*/
 // CALL
-getDocument(db, '9ndQ7Tu2FYL13E14optR');
+//getDocument(db, '9ndQ7Tu2FYL13E14optR');
 
 
 // GET MULTIPLE DOCUMENTS FROM A COLLECTION
-
+/*
 getMultipleDocuments = () => {
     var productsRef = db.collection("products");
     var query = productsRef.where('price', '>', 0).get()
@@ -99,17 +103,19 @@ getMultipleDocuments = () => {
             console.log('Error getting documents', err);
         });
 }
+*/
 // CALL 
-getMultipleDocuments();
+//getMultipleDocuments();
 
 // GET A REALTIME UPDATES WITH CLOUD FIRESTORE
+/*
 var doc = db.collection('products').where('price', '>', 0);
 
 var observer = doc.onSnapshot(docSnapshot => {
     console.log(`Received doc snapshot: ${docSnapshot}`);
     docSnapshot.docChanges.forEach(function(change) {
         if (change.type === "added") {
-            console.log("New city: ", change.doc.data());
+            console.log("New: ", change.doc.data());
         }
         if (change.type === "modified") {
             console.log("Modified: ", change.doc.data());
@@ -122,3 +128,4 @@ var observer = doc.onSnapshot(docSnapshot => {
 }, err => {
     console.log(`Encountered error: ${err}`);
 });
+*/
