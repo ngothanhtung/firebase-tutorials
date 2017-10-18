@@ -1,21 +1,70 @@
 import React, { Component } from 'react';
+
+import ReactDOM from 'react-dom';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
+import ProductComponent from './pages/Product/Index';
+
+
+
+import HeaderComponent from './components/HeaderComponent';
+import AppBarComponent from './components/AppBarComponent';
+import LeftMenuComponent from './components/LeftMenuComponent';
+
+
+
+import MenuItem from 'material-ui/MenuItem';
+import Drawer from 'material-ui/Drawer';
+import AppBar from 'material-ui/AppBar';
+import Badge from 'material-ui/Badge';
+
+import IconButton from 'material-ui/IconButton';
+import NotificationsIcon from 'material-ui/svg-icons/social/notifications';
+import NavigationClose from 'material-ui/svg-icons/navigation/close';
+import FlatButton from 'material-ui/FlatButton';
+
+
 import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
+	constructor(props) {
+		super(props);
+		this.state = { open: false };
+	}
+
+	handleToggle = () => this.setState({ open: !this.state.open });
+
+	render() {
+		return (
+			<div>
+				<MuiThemeProvider>
+					<div>
+						<AppBar
+							title="React Project"
+							onLeftIconButtonTouchTap={this.handleToggle}
+						/>
+						<Drawer open={this.state.open}
+							docked={false}
+							onRequestChange={(open) => this.setState({ open })}
+						>
+							<MenuItem>Menu Item 1</MenuItem>
+							<MenuItem>Menu Item 2</MenuItem>
+						</Drawer>
+
+						<div class="row">
+							<div class="col-md-3">
+								<LeftMenuComponent />
+							</div>
+							<div class="col-md-9">
+								<ProductComponent />
+							</div>
+						</div>
+					</div>
+				</MuiThemeProvider>
+			</div>
+		);
+	}
 }
 
 export default App;
