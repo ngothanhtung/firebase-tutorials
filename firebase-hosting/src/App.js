@@ -2,16 +2,11 @@ import React, { Component } from 'react';
 
 import ReactDOM from 'react-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
 import ProductComponent from './pages/Product/Index';
-
-
 
 import HeaderComponent from './components/HeaderComponent';
 import AppBarComponent from './components/AppBarComponent';
 import LeftMenuComponent from './components/LeftMenuComponent';
-
-
 
 import MenuItem from 'material-ui/MenuItem';
 import Drawer from 'material-ui/Drawer';
@@ -41,7 +36,7 @@ class App extends Component {
 				<MuiThemeProvider>
 					<div>
 						<AppBar
-							title="React Project"
+							title="React Project (Firebase Hosting)"
 							onLeftIconButtonTouchTap={this.handleToggle}
 						/>
 						<Drawer open={this.state.open}
@@ -50,13 +45,16 @@ class App extends Component {
 						>
 							<MenuItem>Menu Item 1</MenuItem>
 							<MenuItem>Menu Item 2</MenuItem>
+							<MenuItem>Menu Item 3</MenuItem>
+							<MenuItem>Menu Item 4</MenuItem>
+							<MenuItem>Menu Item 5</MenuItem>
 						</Drawer>
 
-						<div class="row">
-							<div class="col-md-3">
+						<div className="row">
+							<div className="col-md-3">
 								<LeftMenuComponent />
 							</div>
-							<div class="col-md-9">
+							<div className="col-md-9">
 								<ProductComponent />
 							</div>
 						</div>

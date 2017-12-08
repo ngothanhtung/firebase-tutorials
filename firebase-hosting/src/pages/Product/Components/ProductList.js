@@ -8,9 +8,8 @@ class ProductList extends Component {
 			<div>
 				{
 					this.props.products.map((p) =>
-						<div key={p._id}>
-							<ProductItem product={p} />
-						</div>
+
+						<ProductItem key={p.name} product={p} />
 					)
 				}
 			</div>

@@ -5,7 +5,6 @@ class Products extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			ShoppingCartItems: null,
 			Products: null,
 			open: false,
 			loading: true
@@ -13,10 +12,8 @@ class Products extends Component {
 	}
 
 	componentDidMount() {
-		this.state.ShoppingCartItems = JSON.parse(localStorage.getItem('shopping-cart') || '[]');
-
 		// get json data from remote api
-		fetch('https://slacklivechat.com/jsonplaceholder/products')
+		fetch('https://us-central1-fir-training-2c5ac.cloudfunctions.net/app/getProducts/')
 			//fetch('http://localhost:3000/product/all')
 			.then(res => res.json())
 			.then((data) => {
@@ -33,7 +30,7 @@ class Products extends Component {
 			);
 		} else {
 			return (
-				<h2>Loadding ...</h2>
+				<h2>Loading ...</h2>
 			);
 		}
 	}

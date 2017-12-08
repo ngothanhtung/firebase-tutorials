@@ -2,7 +2,7 @@
 
 const admin = require('firebase-admin');
 
-var serviceAccount = require("./firebase-training-38da3a1f91ab.json");
+var serviceAccount = require("./firebase-training.json");
 admin.initializeApp({
 	credential: admin.credential.cert(serviceAccount)
 });
