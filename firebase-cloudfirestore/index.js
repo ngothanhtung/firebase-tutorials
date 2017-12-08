@@ -1,108 +1,42 @@
 // DOCS: https://firebase.google.com/docs/firestore/?authuser=0
-
 const admin = require('firebase-admin');
 
 var serviceAccount = require("./firebase-training.json");
+
 admin.initializeApp({
 	credential: admin.credential.cert(serviceAccount)
 });
 
 var db = admin.firestore();
 
-// ------------------------------------------------------------------------------------------------
-// ADD DATA
-addDocument = () => {
-	var p = {
-		'name': 'iPhone 8 plus',
-		'price': 1000,
-		'discount': 10,
-		'imageUrl': "#"
-	};
-
-	var docRef = db.collection('products').add(p);
-};
+var CloudFireStoreHelper = require("./CloudFireStoreHelper");
+var helper = new CloudFireStoreHelper(db);
 
 // ------------------------------------------------------------------------------------------------
-
-// ADD / EDIT
-updateDocument = () => {
-	var docRef = db.collection('products').doc("1B2HsImylfQ0I6Ofn5ib")
-
-	var p = docRef.set({
-		'name': 'iPhone XX',
-		'price': 1200,
-		'discount': 5,
-		'imageUrl': "#"
-	});
-}
-
+// ADD DOCUMENT
+// helper.add();
 // ------------------------------------------------------------------------------------------------
 
+// ADD / EDIT DOCUMENT
+// helper.update();
+
+// ------------------------------------------------------------------------------------------------
 // UPDATE FIELD
-updateDocumentField = () => {
-	var updateProductRef = db.collection('products').doc('9ndQ7Tu2FYL13E14optR');
-
-	//Set the 'price' field of the product
-	var updateSingle = updateProductRef.update({
-		price: 999
-	});
-}
+// helper.updateField();
 
 // ------------------------------------------------------------------------------------------------
 
 // GET ALL DATA
-getAllDocuments = () => {
-	db.collection('products').get()
-		.then((snapshot) => {
-			//console.log(snapshot.docs);
-			snapshot.forEach((doc) => {
-				console.log(doc.id, '=>', doc.data());
-			});
-
-			console.log(docs);
-		})
-		.catch((err) => {
-			console.log('Error getting documents', err);
-		});
-}
-
+// helper.getAllDocuments();
 // ------------------------------------------------------------------------------------------------
 
 // GET A DOCUMENT
-getDocumentById = (id) => {
-	var productRef = db.collection('products').doc(id);
-	var getProduct = productRef.get()
-		.then(doc => {
-			if (!doc.exists) {
-				console.log('No such document!');
-			} else {
-				console.log('Document data (product):', doc.data());
-			}
-		})
-		.catch(err => {
-			console.log('Error getting document', err);
-		});
-}
-
-// CALL
-//getDocumentById('9ndQ7Tu2FYL13E14optR');
+// helper.getDocumentById('uWCnfye8y2me7A8yvYbo');
 
 // ------------------------------------------------------------------------------------------------
 
 // GET MULTIPLE DOCUMENTS FROM A COLLECTION
-getMultipleDocuments = () => {
-	var productsRef = db.collection("products");
-	var query = productsRef.where('price', '>', 0).get()
-		.then(snapshot => {
-			console.log('Document data (products):');
-			snapshot.forEach(doc => {
-				console.log(doc.id, '=>', doc.data());
-			});
-		})
-		.catch(err => {
-			console.log('Error getting documents', err);
-		});
-}
+helper.getMultipleDocuments();
 
 // CALL 
 //getMultipleDocuments();
@@ -112,7 +46,7 @@ getMultipleDocuments = () => {
 // GET A REALTIME UPDATES WITH CLOUD FIRESTORE
 
 realtimeUpdate = () => {
-	var doc = db.collection('products').where('price', '>', 0);
+	var doc = db.collection('images').where('price', '>', 0);
 
 	var observer = doc.onSnapshot(docSnapshot => {
 		console.log(`Received doc snapshot: ${docSnapshot}`);
@@ -132,5 +66,6 @@ realtimeUpdate = () => {
 		console.log(`Encountered error: ${err}`);
 	});
 }
+
 // CALL
-realtimeUpdate();
+//realtimeUpdate();
