@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import GalleryItem from './GalleryItem';
 
-class GalleryList extends Component{
+class GalleryList extends Component {
 	render() {
 		return (
 			<div className="row">

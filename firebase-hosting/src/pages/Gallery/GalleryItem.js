@@ -5,17 +5,15 @@ class GalleryItem extends Component {
 	render() {
 		const item = this.props.image;
 		return (
-			<div style={{"margin-bottom": "30px"}}>
-				<Card>
-					<CardImg top width="100%" src={item.imageUrl} alt="Card image cap" />
-					<CardBody>
-						<CardTitle>{item.title}</CardTitle>
-						<CardSubtitle>{item.subTitle}</CardSubtitle>
-						<CardText className="text-justify">{item.text}</CardText>
-						<Button color="primary">Details</Button>
-					</CardBody>
-				</Card>
-			</div>
+			<Card>
+				<CardImg top width="100%" src={item.imageUrl} alt="Card image cap" />
+				<CardBody>
+					<CardTitle>{item.title}</CardTitle>
+					<CardSubtitle>{item.subTitle}</CardSubtitle>
+					<CardText className="text-justify">{item.text}</CardText>
+					<Button color="primary">Details</Button>
+				</CardBody>
+			</Card>
 		);
 	}
 }
