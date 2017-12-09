@@ -24,11 +24,14 @@ class GalleryIndex extends Component {
 	render() {
 		if (this.state.loading === false) {
 			return (
-				<GalleryList images={this.state.images} />
+				<div style={{ "marginBottom": "30px" }}>
+					<h6>Firebase - Cloud FireStore Examples</h6>
+					<GalleryList images={this.state.images} />
+				</div>
 			);
 		} else {
 			return (
-				<h2>Loading ...</h2>
+				<p>Loading ...</p>
 			);
 		}
 	}

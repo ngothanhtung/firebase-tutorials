@@ -5,6 +5,8 @@ import { Button } from 'reactstrap';
 
 // Components
 import NavigationComponent from './components/NavigationComponent';
+import Login from './pages/Login/index';
+import Storage from './pages/Storage/index';
 import Gallery from './pages/Gallery/index';
 
 class App extends Component {
@@ -20,6 +22,13 @@ class App extends Component {
 			<div className="container-fluid">
 				<div>
 					<NavigationComponent />
+				</div>
+				<div className="row">
+					<div className="col-md-12">
+						<Login />
+						<hr />
+						<Storage />
+					</div>
 				</div>
 				<div className="row">
 					<div className="col-md-12">

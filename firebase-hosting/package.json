@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.17.1",
     "bootstrap": "^4.0.0-beta.2",
+    "firebase": "^4.8.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-scripts": "1.0.14",
@@ -16,10 +17,5 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "devDependencies": {
-    "babel-eslint": "^8.0.3",
-    "eslint": "^4.12.1",
-    "eslint-config-airbnb": "^16.1.0",
-    "prettier-eslint": "^8.2.5"
-  }
+  "devDependencies": {}
 }

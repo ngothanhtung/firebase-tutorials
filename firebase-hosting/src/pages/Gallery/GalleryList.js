@@ -7,9 +7,9 @@ class GalleryList extends Component {
 		return (
 			<div className="row">
 				{
-					this.props.images.map(x => (
-						<div className="col-md-3">
-							<GalleryItem key={x.title} image={x} />
+					this.props.images.map((x, index) => (
+						<div key={index} className="col-md-3">
+							<GalleryItem image={x} />
 						</div>
 					))
 				}
