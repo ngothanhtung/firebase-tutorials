@@ -21,7 +21,7 @@ export default class Storage extends React.Component {
     // Create a storage reference from our storage service
     var storageRef = storage.ref('images');
     // Create a reference to the file we want to download
-    var starsRef = storageRef.child('sontra.jpg');
+    var starsRef = storageRef.child('cau-thuan-phuoc.jpg');
 
     const component = this;
     // Get the download URL

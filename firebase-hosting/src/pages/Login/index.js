@@ -3,6 +3,8 @@ import { firebaseHelper as firebase } from "../../config/constants";
 
 import { Button, ButtonGroup } from 'reactstrap';
 
+import LoginComponent from '../../components/LoginComponent';
+
 const firebaseAuthKey = "firebaseAuthInProgress";
 const appTokenKey = "firebaseAppToken";
 
@@ -127,22 +129,25 @@ export default class Login extends React.Component {
     return (
       <div style={{ "marginBottom": "30px" }}>
         <h6>Firebase  - Auth Examples</h6>
-        <div style={{width: '160px'}} className='text-center'>
-          <img src={this.state.user.photoURL} style={{ width: '100%' }} />
-          <p>
-            <b>{this.state.user.displayName}</b>
-          </p>
+        <div className="row">
+          <div className="col-md-10"></div>
+          <div className="col-md-2"> 
+            <LoginComponent user={this.state.user} />
+          </div>
         </div>
-        <div style={{ paddingTop: '10px', paddingBottom: '10px' }} id="recaptcha-container"></div>
-        <ButtonGroup>
-          <Button color="primary" onClick={this.handleCreateUser}>Create User</Button>
-          <Button color="danger" onClick={this.handleLogin}>Login (Email / Password)</Button>
-          <Button color="info" onClick={this.handleLoginWithPhoneNumber}>Login (Phone)</Button>
-          <Button color="primary" onClick={this.handleLoginWithFacebook}>Login (Facebook - Redirect)</Button>
-          <Button color="primary" onClick={this.handleLoginWithFacebookPopup}>Login (Facebook - Popup)</Button>
-          <Button color="danger" onClick={this.handleLoginWithGoogle}>Login (Google)</Button>
-          <Button onClick={this.handleSignOut}>SignOut</Button>
-        </ButtonGroup>
+        <div className="row">
+          <div className="col-md-12">
+            <div style={{ paddingTop: '10px', paddingBottom: '10px' }} id="recaptcha-container"></div>
+            <ButtonGroup>
+              <Button color="primary" onClick={this.handleCreateUser}>Create User</Button>
+              <Button color="danger" onClick={this.handleLogin}>Login (Email / Password)</Button>
+              <Button color="info" onClick={this.handleLoginWithPhoneNumber}>Login (Phone)</Button>
+              <Button color="primary" onClick={this.handleLoginWithFacebook}>Login (Facebook - Redirect)</Button>
+              <Button color="primary" onClick={this.handleLoginWithFacebookPopup}>Login (Facebook - Popup)</Button>
+              <Button color="danger" onClick={this.handleLoginWithGoogle}>Login (Google)</Button>
+              <Button onClick={this.handleSignOut}>SignOut</Button>
+            </ButtonGroup></div>
+        </div>
       </div>
     );
   }

@@ -7,9 +7,9 @@ class CloudFireStoreHelper {
 	// Add Document
 	add() {
 		var data = {
-			'title': 'Hanoi City',		
-			'subTitle': '',
-			'text': '',
+			'title': 'Vung Tau City',		
+			'subTitle': 'Phia Nam',
+			'text': 'Thanh pho Bien xinh dep',
 			'imageUrl': "https://images.unsplash.com/photo-1446770145316-10a05382c470?auto=format&fit=crop&w=1950&q=80&ixid=dW5zcGxhc2guY29tOzs7Ozs%3D"
 		};
 	
@@ -32,7 +32,7 @@ class CloudFireStoreHelper {
 	updateField() {
 		var updateDocRef = this.db.collection('images').doc('POKuvbni0KBlXGj0wwdr');
 		var updateSingle = updateDocRef.update({
-			subTitle: 'New SubTitle'
+			subTitle: 'New Nes New SubTitle'
 		});
 	}
 
