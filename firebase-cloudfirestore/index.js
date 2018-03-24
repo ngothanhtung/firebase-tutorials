@@ -14,7 +14,7 @@ var helper = new CloudFireStoreHelper(db);
 
 // ------------------------------------------------------------------------------------------------
 // ADD DOCUMENT
-// helper.add();
+helper.add();
 // ------------------------------------------------------------------------------------------------
 
 // ADD / EDIT DOCUMENT
@@ -41,4 +41,4 @@ var helper = new CloudFireStoreHelper(db);
 // ------------------------------------------------------------------------------------------------
 
 // GET A REALTIME UPDATES WITH CLOUD FIRESTORE
-helper.realtimeUpdate();
+// helper.realtimeUpdate();

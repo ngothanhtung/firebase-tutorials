@@ -27,6 +27,22 @@ app.get('/getImages', (req, res) => {
         });
 });
 
+
+app.get('/getProducts', (req, res) => {
+    var docs = [];
+    db.collection('products').get()
+        .then((snapshot) => {
+            snapshot.forEach((doc) => {
+                docs.push(doc.data());
+            });
+
+            res.send(docs);
+        })
+        .catch((err) => {
+            res.send("Error getting documents: " + err);
+        });
+});
+
 exports.api = functions.https.onRequest(app);
 
 // // GET ALL PRODUCTS FROM FIRECLOUDSTORE
