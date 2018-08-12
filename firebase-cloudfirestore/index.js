@@ -11,7 +11,6 @@ var db = admin.firestore();
 
 var CloudFireStoreHelper = require("./CloudFireStoreHelper");
 var helper = new CloudFireStoreHelper(db);
-
 helper.findAndUpdate(19370);
 
 // ------------------------------------------------------------------------------------------------

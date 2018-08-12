@@ -1,3 +1,4 @@
+const util = require('util');
 // ------------------------------------------------------------------------------------------------
 // ADD DATA
 class CloudFireStoreHelper {
@@ -29,23 +30,47 @@ class CloudFireStoreHelper {
 	}
 
 	// Find And update Document
-	findAndUpdate(customerId) {
-		var docRef = this.db.collection('Notifications');
-		var action = this.db.collection('Notifications')
-			.where('customerId', '==', customerId).get()
-			.then((snapshot) => {
-				if (!snapshot.exists) {
-					console.log('No such document!');
-					docRef.add({ customerId: customerId, notificationCount: 1 }).then(result => console.log(result));
-				} else {
-					console.log('Document data:', snapshot.data());
-					// doc.set({ customerId: customerId, notificationCount: 1 }).then(result => console.log(result));
-				}
-			})
-			.catch((error) => {
-				console.log('Error', error);
-				res.json(error);
+	async findAndUpdate(customerId) {
+		let notificationRef = this.db.collection('Notifications');
+		let snapshot = await notificationRef.where('customerId', '==', customerId).get();
+		if (snapshot.docs.size === 0) {
+			// ADD NEW
+			let addResult = await notificationRef.add({ customerId: customerId, notificationCount: 1 });
+		} else {
+			snapshot.docs.forEach(async (doc) => {
+				let docRef = notificationRef.doc(doc.id);
+				let getResult = await docRef.get();
+				let data = getResult.data();
+				// console.log(docRef.data());
+				let updateResult = await docRef.set({ customerId: customerId, notificationCount: data.notificationCount + 1 });
 			});
+		}
+
+		// for (doc of customerRef.docs) {
+		// 	console.log(doc.id);
+		// }
+		// .then((snapshot) => {
+		// 	if (snapshot.size === 0) {
+		// 		// ADD NEW
+		// 		notificationRef.add({ customerId: customerId, notificationCount: 1 }).then(result => console.log(result));
+		// 	} else {
+		// 		snapshot.forEach((doc) => {
+		// 			const ref = docRef.doc(doc.id);
+		// 			ref.get().then(x => {
+		// 				if (!x.exists) {
+		// 					console.log('No such document!');
+		// 				} else {
+		// 					// UPDATE NOTIFICATION COUNT
+		// 					ref.set({ customerId: customerId, notificationCount: x.data().notificationCount + 1 });
+		// 				}
+		// 			});
+		// 		});
+		// 	}
+		// })
+		// .catch((error) => {
+		// 	console.log('Error', error);
+		// 	res.json(error);
+		// });
 	}
 
 
