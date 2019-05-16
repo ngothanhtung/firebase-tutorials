@@ -12,51 +12,14 @@ const app = express();
 app.use(cors);
 app.use(cookieParser);
 
-app.get('/getImages', (req, res) => {
-	var docs = [];
-	db.collection('images').get()
-		.then((snapshot) => {
-			snapshot.forEach((doc) => {
-				docs.push(doc.data());
-			});
-
-			res.send(docs);
-		})
-		.catch((err) => {
-			res.send("Error getting documents: " + err);
-		});
-});
-
-
-app.get('/getProducts', (req, res) => {
-	var docs = [];
-	db.collection('products').get()
-		.then((snapshot) => {
-			snapshot.forEach((doc) => {
-				docs.push(doc.data());
-			});
-
-			res.send(docs);
-		})
-		.catch((err) => {
-			res.send("Error getting documents: " + err);
-		});
-});
-
-app.post('/login', (req, res) => {
-	const { username, password } = req.body;
-	db.collection('users').where('username', '==', username).where('password', '==', password).get()
-		.then((snapshot) => {
-			if (snapshot.size === 0) {
-				res.send({ message: 'Login OK' })
-			}
-			else {
-				res.send({ message: 'Login failed' })
-			}
-		})
-		.catch((err) => {
-			res.send("Error getting documents: " + err);
-		});
+app.get('/', (req, res) => {
+	res.json({ ok: true, message: 'Hello World' });
 });
 
 exports.api = functions.https.onRequest(app);
+// ----------------------------------------------------------------------------
+exports.test = (req, res) => {
+	let message = req.query.message || req.body.message || 'Hello World!';
+	res.status(200).json({ message });
+};
+// ----------------------------------------------------------------------------
