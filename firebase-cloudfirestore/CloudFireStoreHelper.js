@@ -86,12 +86,15 @@ class CloudFireStoreHelper {
     this.db
       .collection(collectionName)
       .get()
-      .then((snapshot) => {
-        snapshot.forEach((doc) => {
-          const service = doc.data();
-          console.log(doc.id, '=>', service);
-
-          const vendor = console.log('===========================================================================');
+      .then((querySnapshot) => {
+        let services = [];
+        querySnapshot.forEach((documentSnapshot) => {
+          let service = documentSnapshot.data();
+          service.vendor.get().then((vendorDocumentSnapshot) => {
+            console.log(vendorDocumentSnapshot.data());
+            service.vendor = vendorDocumentSnapshot.data();
+          });
+          services.push(service);
         });
       })
       .catch((err) => {
