@@ -1,17 +1,17 @@
 // DOCS: https://firebase.google.com/docs/firestore/?authuser=0
 const admin = require('firebase-admin');
 
-var serviceAccount = require("./firebase-training.json");
+var serviceAccount = require('./firebase-training.json');
 
 admin.initializeApp({
-	credential: admin.credential.cert(serviceAccount)
+  credential: admin.credential.cert(serviceAccount),
 });
 
 var db = admin.firestore();
 
-var CloudFireStoreHelper = require("./CloudFireStoreHelper");
+var CloudFireStoreHelper = require('./CloudFireStoreHelper');
 var helper = new CloudFireStoreHelper(db);
-helper.findAndUpdate(19370);
+// helper.findAndUpdate(19370);
 
 // ------------------------------------------------------------------------------------------------
 // ADD DOCUMENT
@@ -28,7 +28,7 @@ helper.findAndUpdate(19370);
 // ------------------------------------------------------------------------------------------------
 
 // GET ALL DATA
-// helper.getAllDocuments();
+helper.getAllDocuments('Services');
 // ------------------------------------------------------------------------------------------------
 
 // GET A DOCUMENT
